@@ -212,15 +212,16 @@
         };
         var scores = friendsData.scores
 
+        console.log(scores)
         alert(friendsData)
-        
-        $.get("/api/friends", function(data) {
-            console.log('friendsData')
+
+        $.get("/api/friends", friendsData, function (data) {
+            console.log(friendsData)
+            var total = 0;
+            for (var i in scores) { total += parseInt(scores[i]); }
+            
         })
 
-        $.post("/api/friends", friendsData, function (data) {
-            alert(data)
-        });
     })
 
 </script>

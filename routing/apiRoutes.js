@@ -6,7 +6,7 @@ module.exports = function (app) {
         // console.log(friendsData)
     })
 
-    app.post("/api/friends", function (req, res) {
-        // console.log(friendsData)
+    app.post("/api/friends", friendsData, function (req, res) {
+        console.log(friendsData)
     })
 }
