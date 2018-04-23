@@ -18,3 +18,16 @@ app.listen(PORT, function (e) {
     console.log('listening on port ' + PORT)
 })
 
+app.get("/api/friends", function (req, res) {
+    console.log(res)
+    for (var i = 0; i < res.length; i++) {
+        alert(res[i])
+    }
+})
+
+function postUser() {
+    $.post("/api/friends", friendsData, function (data) {
+        alert(data)
+    });
+}
+

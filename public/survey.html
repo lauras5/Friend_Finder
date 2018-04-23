@@ -194,7 +194,7 @@
         var q9 = $('#q9').val()
         var q10 = $('#q10').val()
         // grab form elements
-        var friendData = {
+        var friendsData = {
             name: $('#uName').val().trim(),
             photo: $('#uPhoto').val().trim(),
             scores: [
@@ -210,12 +210,15 @@
                 q10
             ]
         };
+        var scores = friendsData.scores
 
-        $.get("/api/friends", function(req, res) {
-            console.log(res)
+        alert(friendsData)
+        
+        $.get("/api/friends", function(data) {
+            console.log('friendsData')
         })
 
-        $.post("/api/friends", friendData, function (data) {
+        $.post("/api/friends", friendsData, function (data) {
             alert(data)
         });
     })
