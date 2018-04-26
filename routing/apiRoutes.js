@@ -1,7 +1,14 @@
+
 var friendsData = require("../data/friends")
 
 module.exports = function (app) {
-    app.post("/api/friends", friendsData, function (req, res) {
+
+    app.get("/api/friends", function (req, res) {
+        res.json(friendsData)
+        console.log(friendsData)
+    })
+
+    app.post("/api/friends", function (req, res) {
         var userInput = req.body;
         var userScores = userInput.userScores;
         var diff = 100;
@@ -31,14 +38,6 @@ module.exports = function (app) {
         res.json({ matchName: matchName, matchPhoto: matchPhoto })
     })
 
-    app.get("/api/friends", function (req, res) {
-        res.json(friendsData)
-        // console.log(friendsData)
-    })
-
-    app.get('/userid', function(req, res) {
-        res.send(friendsData.length.toString())
-    })
 }
 
 // form validation
