@@ -22,7 +22,7 @@
         </div>
         <form action="userInfo">
             <div class="row">
-                <form method="post" action="/api/friends">
+                <form>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Name (Required)</label>
                         <input type="text" class="form-control" id="uName">
@@ -181,7 +181,7 @@
         crossorigin="anonymous"></script>
 </body>
 <script>
-    $('#submitBTN').on('click', function () {
+    $('#submitBTN').on('click', function (event) {
         event.preventDefault();
         var q1 = $('#q1').val()
         var q2 = $('#q2').val()
@@ -193,6 +193,7 @@
         var q8 = $('#q8').val()
         var q9 = $('#q9').val()
         var q10 = $('#q10').val()
+
         // grab form elements
         var friendsData = {
             name: $('#uName').val().trim(),
@@ -210,16 +211,22 @@
                 q10
             ]
         };
-        var scores = friendsData.scores
+        
+        console.log(friendsData)
 
-        console.log(scores)
-        alert(friendsData)
+        $.post('/api/friends', friendsData, function (data, status) {
+            console.log(data.matchName)
+            console.log(data.matchPhoto)
 
-        $.get("/api/friends", friendsData, function (data) {
-            console.log(friendsData)
-            var total = 0;
-            for (var i in scores) { total += parseInt(scores[i]); }
-            
+            var img = document.createElement("img")
+            img.src = data.matchPhoto
+            img.style.width = '200px'
+
+            swal({
+                title: "Your Match!",
+                text: data.matchName,
+                content: img
+            });
         })
 
     })
